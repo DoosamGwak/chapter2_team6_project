@@ -61,12 +61,40 @@ def input_check():
 
     input_check()
 
-def search_check():
+
+def id_search_check():
     check_id = input("유저를 찾으시겠습니까?: (y/n): ")
-    
-    for post in posts:
-        if post["ID"] == check_id:
-            print(post)
+    count = 0
+    if check_id == 'y':
+        for post in posts:
+            if post["ID"] == check_id:
+                count += 1
+                print(post["title"])
+        if count == 0:
+            print("검색 결과가 없습니다.")
+    elif check_id == 'n':
+        return
+    else:
+        print("잘못된 입력값입니다. 다시 입력해주세요.")
+    id_search_check()
+
+
+def content_search_check():
+    check_content = input("유저를 찾으시겠습니까?: (y/n): ")
+    count = 0
+    if check_content == 'y':
+        for post in posts:
+            if post["ID"] == check_content:
+                count += 1
+                print(post["title"])
+        if count == 0:
+            print("검색 결과가 없습니다.")
+    elif check_content == 'n':
+        return
+    else:
+        print("잘못된 입력값입니다. 다시 입력해주세요.")
+    content_search_check()
 
 input_check()
-search_check()
+id_search_check()
+content_search_check()
