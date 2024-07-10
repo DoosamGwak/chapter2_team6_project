@@ -66,8 +66,9 @@ def id_search_check():
     check_id = input("유저를 찾으시겠습니까?: (y/n): ")
     count = 0
     if check_id == 'y':
+        id = input("ID를 입력해주세요.: ")
         for post in posts:
-            if post["ID"] == check_id:
+            if post["ID"] == id:
                 count += 1
                 print(post["title"])
         if count == 0:
@@ -80,11 +81,12 @@ def id_search_check():
 
 
 def content_search_check():
-    check_content = input("유저를 찾으시겠습니까?: (y/n): ")
+    check_content = input("내용를 찾으시겠습니까?: (y/n): ")
     count = 0
     if check_content == 'y':
+        text = input("찾을 내용을 입력해주세요.: ")
         for post in posts:
-            if post["ID"] == check_content:
+            if text in post["content"]:
                 count += 1
                 print(post["title"])
         if count == 0:
