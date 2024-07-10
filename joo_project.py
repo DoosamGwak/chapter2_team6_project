@@ -1,15 +1,14 @@
-import hashlib
-
+# import hashlib
 
 class Member:
     def __init__(self, name, username, password):
         self.name = name
         self.username = username
-        self.password = self.hash_password(password)
+        self.password = password
         self.password_length = len(password)
 
-    def hash_password(self, password):
-        return hashlib.sha256(password.encode()).hexdigest()
+    # def hash_password(self, password):
+    #     return hashlib.sha256(password.encode()).hexdigest()
 
     def display(self):
         masked_password = '*' * self.password_length
@@ -45,23 +44,35 @@ def create_post(author):
         content = input(f"주제를 입력해주세요. : ")
         posts.append(Post(title, content, author))
 
+print("\nCreate Members")
+create_member()
+
+print("\nMembers:")
+for member in members:
+    member.display() #확인하고 지우기
+
+# 새로운 멤버의 게시물 생성
+print(f"\nCreating posts for {members[-1].name}")
+create_post(members[-1].name)
 
 # 멤버 및 게시물 생성
 while True:
-    print("\nCreate Members")
-    create_member()
-
-    print("\nMembers:")
-    for member in members:
-        member.display()
-
-    # 새로운 멤버의 게시물 생성
-    print(f"\nCreating posts for {members[-1].name}")
-    create_post(members[-1].name)
-
     another_member = input("새로운 멤버를 추가하시겠습니까? (yes/no): ").lower()
-    if another_member != 'yes':
+    if another_member == 'no':
         break
+    elif another_member =='yes':
+        print("\nCreate Members")
+        create_member()
+
+        print("\nMembers:")
+        for member in members:
+            member.display()#확인하고 지우기
+
+        # 새로운 멤버의 게시물 생성
+        print(f"\nCreating posts for {members[-1].name}")
+        create_post(members[-1].name)
+    else:
+        print("잘못된 입력값입니다. 다시 입력해주세요. (yes/no)")
 
 print("\nAll Members:")
 for member in members:
