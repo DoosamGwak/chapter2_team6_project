@@ -67,9 +67,6 @@ def search_check():
     for post in posts:
         if post["ID"] == check_id:
             print(post)
-        else:
-            print("유저를 찾을 수 없습니다. 다시 입력해주세요.")
-            search_check()
 
 input_check()
 search_check()
